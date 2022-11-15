@@ -8,9 +8,18 @@ import useStyles from "./styles";
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
+  console.log(posts.length);
 
   return !posts.length ? (
-    <CircularProgress />
+    <Grid
+      className={classes.container}
+      container
+      alignItems="center"
+      justifyContent="center"
+      spacing={3}
+    >
+        <CircularProgress />
+    </Grid>
   ) : (
     <Grid
       className={classes.container}
