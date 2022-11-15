@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import useStyles from "./styles";
-import { createPost } from "../../actions/posts";
+import { createPost, updatePost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -16,14 +17,35 @@ const Form = () => {
   });
   const classes = useStyles();
   const dispatch = useDispatch();
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((post) => post._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -33,7 +55,9 @@ const Form = () => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Creating"} a Memory
+        </Typography>
 
         <TextField
           name="creator"
@@ -41,6 +65,7 @@ const Form = () => {
           label="Creator"
           fullWidth
           value={postData.creator}
+          required
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
@@ -51,6 +76,7 @@ const Form = () => {
           label="Title"
           fullWidth
           value={postData.title}
+          required
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <TextField
@@ -59,6 +85,7 @@ const Form = () => {
           label="Message"
           fullWidth
           value={postData.message}
+          required
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
           }
