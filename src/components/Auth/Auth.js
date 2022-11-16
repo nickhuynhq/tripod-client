@@ -6,17 +6,21 @@ import {
   Grid,
   Typography,
   Container,
-  TextField,
 } from "@material-ui/core";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 
 import useStyles from "./styles";
 import Input from "./Input";
+import Icon from "./Icon";
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {};
   const handleChange = () => {};
@@ -25,6 +29,26 @@ const Auth = () => {
   };
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      // fetching userinfo can be done on the client or the server
+      await axios
+        .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+        })
+        .then((res) => {
+          const result = res.data;
+          const token = tokenResponse.access_token;
+          dispatch({ type: "AUTH", data: { result, token } });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    onError: async (error) => console.log(error),
+    // flow: 'implicit', // implicit is the default
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -74,6 +98,7 @@ const Auth = () => {
               />
             )}
           </Grid>
+
           <Button
             type="submit"
             fullWidth
@@ -83,9 +108,20 @@ const Auth = () => {
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
+
+          <Button
+            className={classes.googleButton}
+            color="primary"
+            fullWidth
+            startIcon={<Icon />}
+            variant="contained"
+            onClick={googleLogin}
+          >
+            Google Sign In
+          </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Button onClick={switchMode} >
+              <Button onClick={switchMode}>
                 {isSignup
                   ? "Already have an account? Sign In!"
                   : "Don't have an account? Sign Up!"}
