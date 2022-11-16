@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Typography, Toolbar, Avatar, Button } from "@material-ui/core";
 
@@ -59,5 +59,5 @@ const Navbar = () => {
     </AppBar>
   );
 };
-∂
+
 export default Navbar;
