@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Avatar,
   Button,
@@ -8,27 +9,48 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useDispatch } from "react-redux";
-import axios from "axios";
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
+import {signin, signup} from '../../actions/auth'
+
+const defaultFormData = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(defaultFormData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+     if(isSignup) {
+      dispatch(signup(formData, navigate))
+     } else {
+      dispatch(signin(formData, navigate))
+     }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
+
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -43,13 +65,13 @@ const Auth = () => {
           const result = res.data;
           const token = tokenResponse.access_token;
           dispatch({ type: "AUTH", data: { result, token } });
-          navigate("/")
+          navigate("/");
         })
         .catch((error) => {
           console.log(error);
         });
     },
-    onError: async (error) => console.log(error),
+    onError: (error) => console.log(error),
     // flow: 'implicit', // implicit is the default
   });
 
@@ -65,13 +87,13 @@ const Auth = () => {
             {isSignup && (
               <>
                 <Input
-                  name="firstname"
+                  name="firstName"
                   label="First Name"
                   handleChange={handleChange}
                   half
                 />
                 <Input
-                  name="lastname"
+                  name="lastName"
                   label="Last Name"
                   handleChange={handleChange}
                   half
@@ -120,7 +142,7 @@ const Auth = () => {
             variant="contained"
             onClick={googleLogin}
           >
-            Google Sign In
+            Sign In With Google
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
