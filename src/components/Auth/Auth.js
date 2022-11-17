@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -21,6 +22,7 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {};
   const handleChange = () => {};
@@ -41,6 +43,7 @@ const Auth = () => {
           const result = res.data;
           const token = tokenResponse.access_token;
           dispatch({ type: "AUTH", data: { result, token } });
+          navigate("/")
         })
         .catch((error) => {
           console.log(error);
