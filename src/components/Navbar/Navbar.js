@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AppBar, Typography, Toolbar, Avatar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
@@ -13,13 +13,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const logout = () => {
-    console.log("logged out");
+  const logout = useCallback(() => {
     dispatch({ type: "LOGOUT" });
 
-    navigate("/");
+    navigate("/auth");
     setUser(null);
-  };
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     const token = user?.token;
@@ -32,7 +31,7 @@ const Navbar = () => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, [user?.token, logout, location]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
