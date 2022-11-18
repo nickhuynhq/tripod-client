@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
-import { getPosts } from "../../actions/posts";
+import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -51,7 +51,7 @@ const Home = () => {
 
   const searchPosts = () => {
     if (search.trim()) {
-      // dispatch to fetch search post
+      dispatch(getPostsBySearch({search, tags: tags.join(",")}))
     } else {
       navigate("/");
     }
