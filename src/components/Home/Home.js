@@ -6,14 +6,16 @@ import { getPosts } from "../../actions/posts";
 
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [currentId, dispatch]);
+  }, [currentId, dispatch, location]);
 
   return (
     <Grow in>
