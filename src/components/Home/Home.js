@@ -51,7 +51,10 @@ const Home = () => {
 
   const searchPosts = () => {
     if (search.trim() || tags) {
-      dispatch(getPostsBySearch({search, tags: tags.join(",")}))
+      dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
+      navigate(
+        `/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`
+      );
     } else {
       navigate("/");
     }
@@ -59,7 +62,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [currentId, dispatch, location]);
+  }, [currentId, dispatch]);
 
   return (
     <Grow in>
