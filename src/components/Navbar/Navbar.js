@@ -36,6 +36,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
+      <img className={classes.image} src={logo} alt="logo" height="60" />
         <Typography
           className={classes.heading}
           component={Link}
@@ -45,7 +46,7 @@ const Navbar = () => {
         >
           TriPod
         </Typography>
-        <img className={classes.image} src={logo} alt="logo" height="60" />
+        
       </div>
       <Toolbar className={classes.toolbar}>
         {user ? (

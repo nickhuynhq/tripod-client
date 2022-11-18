@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
     textDecoration: "none",
   },
   image: {
-    marginLeft: "15px",
+    marginRight: ".5rem",
   },
   toolbar: {
     display: "flex",
