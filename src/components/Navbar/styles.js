@@ -20,6 +20,19 @@ export default makeStyles((theme) => ({
   heading: {
     color: "rgba(0, 177, 106, 1)",
     textDecoration: "none",
+    fontWeight: "bold",
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
   },
   image: {
     marginRight: ".5rem",
