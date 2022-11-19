@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress, Paper } from "@material-ui/core";
 
 import Post from "./Post/Post";
 import useStyles from "./styles";
@@ -12,7 +12,10 @@ const Posts = ({ setCurrentId }) => {
   if (!posts.length && !isLoading) return 'No posts';
   
   return isLoading ? (
-    <CircularProgress />
+    <Paper className={classes.loadingPaper}>
+          <CircularProgress size="5rem"/>
+    </Paper>
+
   ) : (
     <Grid
       className={classes.container}

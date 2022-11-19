@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_POST,
   CREATE,
   UPDATE,
   DELETE,
@@ -31,6 +32,12 @@ const state = (state = { isLoading: true, posts: [] }, action) => {
           ...state,
           posts: action.payload
         };
+
+    case FETCH_POST:
+      return {
+        ...state,
+        post: action.payload
+      };
 
     case CREATE:
       return {...state, posts: [...state.posts, action.payload]};

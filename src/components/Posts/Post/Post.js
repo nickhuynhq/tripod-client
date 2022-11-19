@@ -1,5 +1,13 @@
 import React from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase, } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+  ButtonBase,
+} from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -50,7 +58,10 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      <ButtonBase className={classes.cardAction} onClick={openPost}>
+      <ButtonBase
+        className={classes.cardAction}
+        onClick={openPost}
+      >
         <CardMedia
           className={classes.media}
           image={post.selectedFile || NoImage}
@@ -63,40 +74,42 @@ const Post = ({ post, setCurrentId }) => {
             {moment(post.createdAt).fromNow()}
           </Typography>
         </div>
-
-        <div className={classes.overlay2}>
-          {(user?.result?.googleId === post?.creator ||
-            user?.result?._id === post?.creator) && (
+        {(user?.result?.googleId === post?.creator ||
+          user?.result?._id === post?.creator) && (
+          <div className={classes.overlay2} name="edit">
             <Button
-              style={{ color: "white" }}
-              size="small"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 setCurrentId(post._id);
               }}
+              style={{ color: "white" }}
+              size="small"
             >
-              <MoreHorizIcon fontSize="medium" />
+              <MoreHorizIcon fontSize="default" />
             </Button>
-          )}
-        </div>
-
+          </div>
+        )}
         <div className={classes.details}>
-          <Typography noWrap variant="body2" color="textSecondary">
-            {post.tags.map((tag) => (tag ? ` #${tag}` : null))}
+          <Typography variant="body2" color="textSecondary" component="h2">
+            {post.tags.map((tag) => `#${tag} `)}
           </Typography>
         </div>
-
-        <Typography className={classes.title} variant="h5" gutterBottom>
+        <Typography
+          className={classes.title}
+          gutterBottom
+          variant="h5"
+          component="h2"
+        >
           {post.title}
         </Typography>
-
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
-            {post.message}
+            {post.message.split(" ").splice(0, 20).join(" ")}...
           </Typography>
         </CardContent>
       </ButtonBase>
 
-      <CardActions>
+      <CardActions className={classes.card}>
         <Button
           size="small"
           color="primary"

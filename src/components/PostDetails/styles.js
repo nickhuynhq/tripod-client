@@ -4,8 +4,8 @@ export default makeStyles((theme) => ({
   media: {
     borderRadius: "20px",
     objectFit: "cover",
-    width: "100%",
     maxHeight: "600px",
+    width: "100%",
   },
   card: {
     display: "flex",
@@ -22,8 +22,10 @@ export default makeStyles((theme) => ({
   },
   imageSection: {
     marginLeft: "20px",
+    width: "45%",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 0,
+      width: "100%",
     },
   },
   recommendedPosts: {

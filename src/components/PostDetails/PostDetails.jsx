@@ -5,6 +5,7 @@ import {
   CircularProgress,
   Divider,
 } from "@material-ui/core";
+import NoImage from "../../assets/images/no-image.png"
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
@@ -13,15 +14,32 @@ import { getPost } from "../../actions/posts";
 import useStyles from "./styles";
 
 const PostDetails = () => {
-  const { post, posts, isLoading } = useSelector((state) => state.posts);
+  const { post, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
   const { id } = useParams();
-
   useEffect(() => {
-    dispatch(getPost())
-  }, [id])
+    dispatch(getPost(id));
+  }, [dispatch, id]);
+
+  // useEffect(() => {
+  //   if (post) {
+  //     dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
+  //   }
+  // }, [post]);
+
+  if (!post) return null;
+
+  const openPost = (_id) => navigate(`/posts/${_id}`);
+
+  if (isLoading) {
+    return (
+      <Paper elevation={6} className={classes.loadingPaper}>
+        <CircularProgress size="5rem" />
+      </Paper>
+    );
+  }
 
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
@@ -55,7 +73,7 @@ const PostDetails = () => {
             className={classes.media}
             src={
               post.selectedFile ||
-              "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+              NoImage
             }
             alt={post.title}
           />
