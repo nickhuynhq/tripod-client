@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_POST,
   CREATE,
   UPDATE,
   DELETE,
@@ -11,12 +12,27 @@ import {
 import * as api from "../api";
 
 // Action Creators
+
+// Get all Posts
 export const getPosts = (page) => async (dispatch) => {
   try {
 
     dispatch({type: START_LOADING});
     const { data } = await api.fetchPosts(page);
     dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: END_LOADING })
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Get single Post
+export const getPost = (id) => async (dispatch) => {
+  try {
+
+    dispatch({type: START_LOADING});
+    const { data } = await api.fetchPost(id);
+    dispatch({ type: FETCH_POST, payload: data });
     dispatch({ type: END_LOADING })
   } catch (error) {
     console.log(error);
