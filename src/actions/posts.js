@@ -11,6 +11,7 @@ import {
 } from "../constants/actionTypes";
 import * as api from "../api";
 
+
 // Action Creators
 
 // Get all Posts
@@ -49,10 +50,11 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({type: START_LOADING});
     const { data } = await api.createPost(post);
+    navigate(`/posts/${data._id}`)
     dispatch({ type: CREATE, payload: data });
     dispatch({type: END_LOADING});
   } catch (error) {

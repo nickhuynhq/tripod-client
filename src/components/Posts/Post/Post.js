@@ -77,7 +77,7 @@ const Post = ({ post, setCurrentId }) => {
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
           <div className={classes.overlay2} name="edit">
-            <Button
+            <div
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentId(post._id);
@@ -86,7 +86,7 @@ const Post = ({ post, setCurrentId }) => {
               size="small"
             >
               <MoreHorizIcon fontSize="medium" />
-            </Button>
+            </div>
           </div>
         )}
         <div className={classes.details}>
@@ -109,7 +109,7 @@ const Post = ({ post, setCurrentId }) => {
         </CardContent>
       </ButtonBase>
 
-      <CardActions className={classes.card}>
+      <CardActions className={classes.cardActions}>
         <Button
           size="small"
           color="primary"

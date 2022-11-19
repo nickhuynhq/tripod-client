@@ -143,11 +143,6 @@ const Auth = () => {
           >
             Sign In With Google
           </Button>
-          {/* <GoogleLogin
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          /> */}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
