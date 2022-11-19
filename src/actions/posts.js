@@ -23,7 +23,7 @@ export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING })
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -35,7 +35,7 @@ export const getPost = (id) => async (dispatch) => {
     dispatch({ type: FETCH_POST, payload: data  });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -46,7 +46,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
     dispatch({type: END_LOADING});
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -58,7 +58,7 @@ export const createPost = (post, navigate) => async (dispatch) => {
     dispatch({ type: CREATE, payload: data });
     dispatch({type: END_LOADING});
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -68,7 +68,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -78,7 +78,7 @@ export const deletePost = (id) => async (dispatch) => {
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -88,6 +88,6 @@ export const likePost = (id) => async (dispatch) => {
 
     dispatch({ type: LIKE, payload: data });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
