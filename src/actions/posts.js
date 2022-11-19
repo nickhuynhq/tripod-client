@@ -9,9 +9,9 @@ import {
 import * as api from "../api";
 
 // Action Creators
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts();
+    const { data } = await api.fetchPosts(page);
 
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
@@ -22,7 +22,6 @@ export const getPosts = () => async (dispatch) => {
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {
     const { data } = await api.fetchPostsBySearch(searchQuery);
-    console.log(data)
     dispatch({ type: FETCH_BY_SEARCH, payload: data });
   } catch (error) {
     console.log(error);
