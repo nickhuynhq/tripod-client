@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import PostDetails from "./components/PostDetails/PostDetails";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
             <Route path="/posts/search" exact element={<Home />} />
             <Route path="/posts/:id" element={<PostDetails />} />
             <Route path="/auth" exact element={!user ? <Auth /> : <Navigate to="/posts"/>} />
-            <Route path="*" exact element={<h1>404</h1>} />
+            <Route path="*" exact element={<PageNotFound />} />
           </Routes>
         </Container>
       </BrowserRouter>
