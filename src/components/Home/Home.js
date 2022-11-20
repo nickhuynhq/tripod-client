@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Grow,
-  Grid,
-  Paper,
-  AppBar,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Container, Grow, Grid, Paper, AppBar, TextField, Button, } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getPosts, getPostsBySearch } from "../../actions/posts";
+import { getPostsBySearch } from "../../actions/posts";
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 import { useLocation, useNavigate } from "react-router-dom";

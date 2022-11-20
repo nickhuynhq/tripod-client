@@ -57,7 +57,6 @@ const Form = ({ currentId, setCurrentId }) => {
           Please Sign In to create and interact with posts
         </Typography>
       </Paper>
-
     )
   }
 

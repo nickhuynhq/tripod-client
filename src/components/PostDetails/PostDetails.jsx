@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import {
-  Paper,
-  Typography,
-  CircularProgress,
-  Divider,
-} from "@material-ui/core";
+import { Paper, Typography, CircularProgress, Divider, } from "@material-ui/core";
 import NoImage from "../../assets/images/no-image.png";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
 import { getPost, getPostsBySearch } from "../../actions/posts";
 
+import CommentSection from "./CommentSection";
 import useStyles from "./styles";
 
 const PostDetails = () => {
@@ -19,6 +15,7 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { id } = useParams();
+  
   useEffect(() => {
     dispatch(getPost(id));
   }, [dispatch, id]);
@@ -68,9 +65,9 @@ const PostDetails = () => {
             {moment(post.createdAt).fromNow()}
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+
+          <CommentSection post={post}/>
+
         </div>
         <div className={classes.imageSection}>
           <img
@@ -80,7 +77,7 @@ const PostDetails = () => {
           />
         </div>
       </div>
-      {recommendedPosts.length && (
+      {recommendedPosts.length ? (
         <div className={classes.section}>
           <Typography gutterBottom variant="h5">
             You might also like:
@@ -113,6 +110,16 @@ const PostDetails = () => {
             )}
           </div>
         </div>
+      ) : (
+        <Typography
+            gutterBottom
+            variant="h6"
+            color="textSecondary"
+            component="h2"
+          >
+            No recommended posts
+          </Typography>
+
       )}
     </Paper>
   );

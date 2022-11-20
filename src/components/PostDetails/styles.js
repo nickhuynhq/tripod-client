@@ -2,9 +2,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
   media: {
-    borderRadius: "20px",
+    borderRadius: "1.25rem",
     objectFit: "cover",
-    maxHeight: "600px",
+    maxHeight: "37.5rem",
     width: "100%",
   },
   card: {
@@ -38,17 +38,27 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "20px",
-    borderRadius: "15px",
+    padding: "1.25rem",
+    borderRadius: ".9375rem",
     height: "39vh",
   },
   commentsOuterContainer: {
     display: "flex",
     justifyContent: "space-between",
+    width: "100%",
+    marginBottom: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column"
+    },
   },
   commentsInnerContainer: {
-    height: "200px",
-    overflowY: "auto",
-    marginRight: "30px",
+    height: "12.5rem",
+    width: "100%",
+    overflowY: "scroll",
+    marginRight: "1.875rem",
+    marginBottom: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    },
   },
 }));
