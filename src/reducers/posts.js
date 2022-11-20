@@ -5,6 +5,7 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  COMMENT,
   FETCH_BY_SEARCH,
   START_LOADING,
   END_LOADING,
@@ -55,6 +56,19 @@ const state = (state = { isLoading: true, posts: [] }, action) => {
         posts: state.posts.map((post) =>
           post._id === action.payload._id ? action.payload : post
         ),
+      };
+
+    case COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          // Change the post that just received a comment
+          if (post._id === action.payload._id) {
+            return action.payload;
+          }
+          // Return all the other posts normally
+          return post;
+        }),
       };
 
     case DELETE:
