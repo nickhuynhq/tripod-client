@@ -15,6 +15,7 @@ const PostDetails = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { id } = useParams();
+  
   useEffect(() => {
     dispatch(getPost(id));
   }, [dispatch, id]);
