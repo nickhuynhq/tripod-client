@@ -8,6 +8,8 @@ import { commentPost } from "../../actions/posts";
 const CommentSection = ({ post }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const commentsRef = useRef();
+
   const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState("");
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -18,7 +20,8 @@ const CommentSection = ({ post }) => {
 
     setComment('');
     setComments(newComments);
-    
+
+    setTimeout(function () {commentsRef.current.scrollIntoView({behavior: "smooth"})}, 100);
   };
 
   return (
@@ -30,12 +33,14 @@ const CommentSection = ({ post }) => {
           </Typography>
           {comments?.map((comment, index) => (
             <Typography key={index} gutterBottom variant="subtitle1">
-              {comment}
+              <strong>{comment.split(': ')[0]}: </strong>
+              {comment.split(':')[1]}
             </Typography>
           ))}
+          <div ref={commentsRef}/>
         </div>
         {user?.result?.name && (
-          <div style={{ width: "70%" }}>
+          <div style={{ width: "100%" }}>
             <Typography gutterBottom variant="h6">
               Write a comment
             </Typography>
