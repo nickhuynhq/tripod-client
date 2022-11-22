@@ -1,19 +1,27 @@
 # TriPod
 
-**TriPOd is photo sharing application where users can like, share, and comment on posts (Pods)**
+**TriPod is photo sharing application where users can like, share, and comment on posts (Pods)**
 
-This project was created to experiment with Redux and MongoDB.
+This project was created to experiment with Redux and MongoDB. I was able to learn a lot about persistent states and state management within React. In addition, I was able to efficiently create and style components using Material UI!
+
 Backend was deployed on a seperate repo which can be found here:
+https://github.com/nickhuynhq/memories-server
 
 Please use this link to demo the live site!
 https://tripod.nickhuynhq.com
 
 
 ## Project Screenshot
-
+![Screenshot 2022-11-21 at 7 56 29 PM](https://user-images.githubusercontent.com/71597829/203188487-fd81c59d-9921-4f15-be83-46d8a0886cee.jpg)
 
 
 ## Current Features
+- Creating, Editing, & Deleting Posts
+- Instant feedback when Liking Posts
+- Image Upload 
+- Real time comments
+- Recommended posts feature
+- Sign in with Google
 
 
 ## Tech Stack
