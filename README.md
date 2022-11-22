@@ -5,7 +5,7 @@
 This project was created to experiment with Redux and MongoDB. I was able to learn a lot about persistent states and state management within React. In addition, I was able to efficiently create and style components using Material UI!
 
 Backend was deployed on a seperate repo which can be found here:
-https://github.com/nickhuynhq/memories-server
+https://github.com/nickhuynhq/tripod-server
 
 Please use this link to demo the live site!
 https://tripod.nickhuynhq.com
