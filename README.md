@@ -41,12 +41,12 @@ https://tripod.nickhuynhq.com
 ## Installation
 
 1. Clone this repository.
-```$ git clone https://git@github.com:nickhuynhq/memories-client.git```
+```$ git clone https://git@github.com:nickhuynhq/tripod-client.git```
 
 
 2. Run `npm install` from inside the client directory.
 ```bash
-$ cd memories-client
+$ cd tripod-client
 $ npm install
 ```
 
