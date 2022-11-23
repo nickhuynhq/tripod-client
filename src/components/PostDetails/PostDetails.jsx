@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Paper, Typography, CircularProgress, Divider, } from "@material-ui/core";
+import { Paper, Typography, CircularProgress, Divider } from "@material-ui/core";
 import NoImage from "../../assets/images/no-image.png";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
@@ -46,7 +46,7 @@ const PostDetails = () => {
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
       <div className={classes.card}>
         <div className={classes.section}>
-          <Typography variant="h3" component="h2">
+          <Typography variant="h3" component="h2" gutterBottom>
             {post.title}
           </Typography>
           <Typography
@@ -86,26 +86,30 @@ const PostDetails = () => {
           <div className={classes.recommendedPosts}>
             {recommendedPosts.map(
               ({ title, message, name, likes, selectedFile, _id }) => (
-                <div
-                  style={{ margin: "20px", cursor: "pointer" }}
+                <Paper
+                  className={classes.recommendedPost}
                   onClick={() => openPost(_id)}
                   key={_id}
                 >
-                  <Typography gutterBottom variant="h6">
-                    {title}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {name}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle2">
-                    {message}
-                  </Typography>
-                  <Typography gutterBottom variant="subtitle1">
-                    Likes: {likes.length}
-                  </Typography>
-                  <img src={selectedFile} width="200px" alt={title}/>
+                  <img className={classes.recommendedPostImage} src={selectedFile} alt={title}/>
+                  <div className={classes.recommendedPostInfo}>
+                    <Typography gutterBottom variant="h6">
+                      {title}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle2">
+                      {name}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle2" noWrap>
+                      {message}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle1">
+                      Likes: {likes.length}
+                    </Typography>
+                  </div>
                  
-                </div>
+                  
+                 
+                </Paper>
               )
             )}
           </div>

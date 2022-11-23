@@ -30,9 +30,34 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: "flex",
+    width: "100%",
+    gap: "1rem",
+    padding: "1rem",
+    flexWrap: "wrap",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
+  },
+  recommendedPost: {
+    display: "flex",
+    gap: "1rem",
+    width: "80%",
+    padding: "1.5rem",
+    height: "150px",
+    cursor: "pointer",
+    [theme.breakpoints.up("lg")]: {
+      width: "33%",
+    },
+   
+  },
+  recommendedPostInfo: {
+    width: "45%",
+    textOverflow: "ellipsis"
+  },
+  recommendedPostImage: {
+    width: "45%",
+    objectFit: "cover",
+    borderRadius: "10px"
   },
   loadingPaper: {
     display: "flex",
