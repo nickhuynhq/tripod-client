@@ -12,7 +12,11 @@ https://tripod.nickhuynhq.com
 
 
 ## Project Screenshot
-![Screenshot 2022-11-21 at 7 56 29 PM](https://user-images.githubusercontent.com/71597829/203188487-fd81c59d-9921-4f15-be83-46d8a0886cee.jpg)
+![Project Screenshot](https://user-images.githubusercontent.com/71597829/203188487-fd81c59d-9921-4f15-be83-46d8a0886cee.jpg)
+
+## Project DEMO
+https://user-images.githubusercontent.com/71597829/204843525-df242242-d280-4c41-8094-dc1b4d2e5adb.mov
+
 
 
 ## Current Features
