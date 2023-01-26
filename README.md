@@ -12,7 +12,8 @@ https://tripod.nickhuynhq.com
 
 
 ## Project Screenshot
-![tripod-mockup](https://user-images.githubusercontent.com/71597829/214748823-9b8b4f6a-9881-4ac8-8bc6-30ba4df34287.jpg)
+![tripod](https://user-images.githubusercontent.com/71597829/214968637-b7f22c01-ef6c-4a02-ae3b-b3a998d7fc56.jpg)
+
 
 ## Project DEMO
 https://user-images.githubusercontent.com/71597829/204843525-df242242-d280-4c41-8094-dc1b4d2e5adb.mov
